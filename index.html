@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="nl" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated filter</title>
+    <link rel="stylesheet" href="dist/css/animated-filter.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #eee;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 24px;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+
+<ul data-filter-list data-filter-for="items1">
+    <li><a data-filter="all" href="#" class="is-active">All</a></li>
+    <li><a data-filter="1" href="#">1</a></li>
+    <li><a data-filter="2" href="#">2</a></li>
+    <li><a data-filter="3" href="#">3</a></li>
+</ul>
+
+<div class="items" data-filter-types id="items1">
+    <div class="item" data-filter-type="1">1 and 2 and 3</div>
+    <div class="item" data-filter-type="3">Item type 3 a</div>
+    <div class="item" data-filter-type="1">Item type 1 b</div>
+    <div class="item" data-filter-type="2">Item type 2 a</div>
+    <div class="item" data-filter-type="2">Item type 2 b</div>
+    <div class="item" data-filter-type="3">Item type 3 b</div>
+    <div class="item" data-filter-type="1">Item type 1 c</div>
+    <div class="item" data-filter-type="1">Item type 1 d</div>
+    <div class="item" data-filter-type="1">Item type 3 e</div>
+    <div class="item" data-filter-type="2">Item type 2 c</div>
+    <div class="item" data-filter-type="1">Item type 1 f</div>
+    <div class="item" data-filter-type="2">Item type 2 d</div>
+    <div class="item" data-filter-type="1">Item type 3 g</div>
+    <div class="item" data-filter-type="3">Item type 3 c</div>
+    <div class="item" data-filter-type="2">Item type 2 e</div>
+</div>
+
+
+<ul data-filter-list data-filter-for="items2">
+    <li><a data-filter="all" href="#" class="is-active">All</a></li>
+    <li><a data-filter="1" href="#">1</a></li>
+    <li><a data-filter="2" href="#">2</a></li>
+    <li><a data-filter="3" href="#">3</a></li>
+</ul>
+
+<div class="items" data-filter-types id="items2">
+    <div class="item" data-filter-type="1">1 and 2 and 3</div>
+    <div class="item" data-filter-type="3">Item type 3 a</div>
+    <div class="item" data-filter-type="1">Item type 1 b</div>
+    <div class="item" data-filter-type="2">Item type 2 a</div>
+    <div class="item" data-filter-type="2">Item type 2 b</div>
+    <div class="item" data-filter-type="3">Item type 3 b</div>
+    <div class="item" data-filter-type="1">Item type 1 c</div>
+    <div class="item" data-filter-type="1">Item type 1 d</div>
+    <div class="item" data-filter-type="1">Item type 3 e</div>
+    <div class="item" data-filter-type="2">Item type 2 c</div>
+    <div class="item" data-filter-type="1">Item type 1 f</div>
+    <div class="item" data-filter-type="2">Item type 2 d</div>
+    <div class="item" data-filter-type="1">Item type 3 g</div>
+    <div class="item" data-filter-type="3">Item type 3 c</div>
+    <div class="item" data-filter-type="2">Item type 2 e</div>
+</div>
+
+<!-- loading menu animation -->
+<script src="src/js/animated-filter.js"></script>
+
+<!-- initializing the menu -->
+<script type="text/javascript">
+    var filter = new animatedFilter();
+</script>
+</body>
+</html>
