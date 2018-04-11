@@ -1,106 +1,94 @@
-body {
-  background: #ecf0f1;
-  padding: 32px;
-  color: #282828;
-  font-size: 18px;
-  line-height: 24px;
-}
+// Variables
+// =========
 
-h1 {
-  font-size: 32px;
-  line-height: 40px;
-  font-weight: 400;
-}
+$animated-filter-box-sizing:                  border-box !default;
+$animated-filter-transition:                  400ms ease-out !default;
 
-* {
-  box-sizing: border-box;
-}
+// List
+$animated-filter-list-selector:               '[data-filter-list]' !default;
+$animated-filter-list-list-style:             none !default;
+$animated-filter-list-display:                flex !default;
+$animated-filter-list-margin:                 0 !default;
+$animated-filter-list-padding:                0 !default;
+$animated-filter-list-box-sizing:             $animated-filter-box-sizing !default;
 
-[data-filter-list] {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0 0 16px;
+// List item
+$animated-filter-list-item-selector:          '[data-filter]' !default;
+$animated-filter-list-item-display:           block !default;
 
-  li + li {
-    margin-left: 16px;
+// Types
+$animated-filter-types-selector:              '[data-filter-types]' !default;
+$animated-filter-types-position:              relative !default;
+$animated-filter-types-transition:            height $animated-filter-transition !default;
+$animated-filter-types-display:               flex !default;
+$animated-filter-types-flex-wrap:             wrap !default;
+$animated-filter-types-box-sizing:            $animated-filter-box-sizing !default;
+
+// Type
+$animated-filter-type-selector:               '[data-filter-type]' !default;
+$animated-filter-type-position:               relative !default;
+$animated-filter-type-box-sizing:             $animated-filter-box-sizing !default;
+$animated-filter-type-opacity:                1 !default;
+$animated-filter-type-transform:              scale(1) !default;
+$animated-filter-type-hiding-selector:        '.is-hiding' !default;
+$animated-filter-type-hiding-opacity:         0 !default;
+$animated-filter-type-hiding-transform:       scale(0) !default;
+$animated-filter-type-hidden-selector:        '.is-hidden' !default;
+$animated-filter-type-hidden-display:         none !default;
+$animated-filter-type-transition-selector:    '.transition' !default;
+$animated-filter-type-transition-transition:  opacity $animated-filter-transition, transform $animated-filter-transition !default;
+
+
+// Selectors
+// =========
+
+// List
+@if $animated-filter-list-selector {
+  #{$animated-filter-list-selector} {
+    @if $animated-filter-list-list-style != false { list-style: $animated-filter-list-list-style; }
+    @if $animated-filter-list-display != false { display: $animated-filter-list-display; }
+    @if $animated-filter-list-margin != false { margin: $animated-filter-list-margin; }
+    @if $animated-filter-list-padding != false { padding: $animated-filter-list-padding; }
+    @if $animated-filter-list-box-sizing != false { box-sizing: $animated-filter-list-box-sizing; }
   }
+}
 
-  a {
-    display: block;
-    color: #34495e;
-    background: white;
-    padding: 12px;
+// List item
+@if $animated-filter-list-item-selector {
+  #{$animated-filter-list-item-selector} {
+    @if $animated-filter-list-item-display != false { display: $animated-filter-list-item-display; }
+  }
+}
 
-    &:hover {
-      text-decoration: none;
+// Types
+@if $animated-filter-types-selector {
+  #{$animated-filter-types-selector} {
+    @if $animated-filter-types-position != false { position: $animated-filter-types-position; }
+    @if $animated-filter-types-transition != false { transition: $animated-filter-types-transition; }
+    @if $animated-filter-types-display != false { display: $animated-filter-types-display; }
+    @if $animated-filter-types-flex-wrap != false { flex-wrap: $animated-filter-types-flex-wrap; }
+    @if $animated-filter-types-box-sizing != false { box-sizing: $animated-filter-types-box-sizing; }
+  }
+}
+
+@if $animated-filter-type-selector {
+  #{$animated-filter-type-selector} {
+    @if $animated-filter-type-position != false { position: $animated-filter-type-position; }
+    @if $animated-filter-type-box-sizing != false { box-sizing: $animated-filter-type-box-sizing; }
+    @if $animated-filter-type-opacity != false { opacity: $animated-filter-type-opacity; }
+    @if $animated-filter-type-transform != false { transform: $animated-filter-type-transform; }
+
+    &#{$animated-filter-type-hiding-selector} {
+      @if $animated-filter-type-hiding-opacity != false { opacity: $animated-filter-type-hiding-opacity; }
+      @if $animated-filter-type-hiding-transform != false { transform: $animated-filter-type-hiding-transform; }
+    }
+
+    &#{$animated-filter-type-hidden-selector} {
+      @if $animated-filter-type-hidden-display != false { display: $animated-filter-type-hidden-display; }
+    }
+
+    &#{$animated-filter-type-transition-selector} {
+      @if $animated-filter-type-transition-transition != false { transition: $animated-filter-type-transition-transition; }
     }
   }
-
-  .is-active {
-    background: #2980b9;
-    color: white;
-  }
-}
-
-[data-filter-types] {
-  position: relative;
-  border: 4px solid #bdc3c7;
-  background: white;
-  padding: 6px;
-  margin-bottom: 24px;
-  transition: height 400ms ease-out;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-[data-filter-type] {
-  position: relative;
-  background: #eee;
-  margin: 6px;
-  padding: 12px;
-  opacity: 1;
-  transform: scale(1);
-  width: calc(100% - 12px);
-  color: white;
-
-  &.is-hiding {
-    opacity: 0;
-    transform: scale(0);
-  }
-
-  &.is-hidden {
-    display: none;
-  }
-
-  &.transition {
-    transition: opacity 400ms ease-out, transform 400ms ease-out;
-  }
-
-}
-
-@media screen and(min-width:560px) {
-  [data-filter-type] {
-    width: calc(50% - 12px);
-    margin: 6px;
-    float: left;
-  }
-}
-
-@media screen and(min-width:768px) {
-  [data-filter-type] {
-    width: calc(33.333333333% - 12px);
-  }
-}
-
-[data-filter-type="1"] {
-  background: #c0392b;
-}
-
-[data-filter-type="2"] {
-  background: #27ae60;
-}
-
-[data-filter-type="3"] {
-  background: #2980b9;
 }
