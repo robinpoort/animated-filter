@@ -160,6 +160,7 @@
             // Variables
             var items = document.getElementById(event.target.closest('ul').getAttribute('data-filter-for')) || document.querySelector(localSettings.types),
                 item = items.querySelectorAll(localSettings.type),
+                noitems = items.querySelector('[data-filter-type="none"]'),
                 filter = event.target.getAttribute("data-filter"),
                 visible = items.querySelectorAll('[data-filter-type]:not(.is-hidden)'),
                 list = [],
@@ -168,7 +169,11 @@
             // Get filter list
             if (filter == 'all') {
                 forEach(item, function (value, prop) {
-                    list.push(item[prop]);
+                    if (item[prop] !== noitems) {
+                        list.push(item[prop]);
+                    } else {
+                        invisibleList.push(item[prop]);
+                    }
                 });
             } else {
                 forEach(item, function (value, prop) {
@@ -179,6 +184,13 @@
                         invisibleList.push(item[prop]);
                     }
                 });
+            }
+
+            // Add noitems item as visible item
+            if (list.length === 0) {
+                list.push(noitems);
+                invisibleList.splice(invisibleList.indexOf(noitems), 1);
+                filter = 'none';
             }
 
             // Set default positions
