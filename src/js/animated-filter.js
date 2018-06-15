@@ -166,6 +166,26 @@
                 list = [],
                 invisibleList = [];
 
+            // Set items in default order if data-position is set
+            if (item[0].hasAttribute('data-position')) {
+
+                // From NodeList to Array
+                var itemList = [].slice.call(item);
+
+                // Sort in default order
+                itemList.sort(function(a, b) {
+                    return parseInt(a.getAttribute('data-position'), 10) == parseInt(b.getAttribute('data-position'), 10) ? 0 : (parseInt(a.getAttribute('data-position'), 10) > parseInt(b.getAttribute('data-position'), 10) ? 1 : -1);
+                });
+
+                // Set items in original order
+                for (var i = 0; i < itemList.length; ++i) {
+                    items.appendChild(itemList[i]);
+                }
+
+                // Nodelist to new Array
+                item = itemList;
+            }
+
             // Get filter list
             if (filter == 'all') {
                 forEach(item, function (value, prop) {
@@ -332,11 +352,6 @@
                     }
                 });
                 items.removeAttribute("style");
-
-                // Reset items in original order
-                forEach(item, function (value, prop) {
-                    items.appendChild(item[prop]);
-                });
 
                 localSettings.onAfterAnimate();
 
